@@ -19,17 +19,26 @@
 #
 
 class User < ActiveRecord::Base
+  nilify_blanks :before => :validation
+  
+  attr_accessor :login
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :authentication_keys => [:login]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :password
+  attr_accessible :email, :login, :name, :password,
+                  :password_confirmation, :remember_me
+                  
+                  
   validates :name, :password, :presence => true
-  validates :name, :uniqueness => true
+  validates :name, :uniqueness => { :case_sensitive => false }
+  validates :email, :uniqueness => { :case_sensitive => false,
+            :allow_nil => true }
   
   has_many :friendships
   has_many :friends, :through => :friendships
@@ -38,6 +47,16 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :group_memberships
   
   has_many :photos, :foreign_key => :owner_id
+  
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(name) = :value OR lower(email) = :value",
+        { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
   
   def email_required?
     false

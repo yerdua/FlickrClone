@@ -31,6 +31,7 @@ end
 gem 'aws-sdk'
 gem 'devise'
 gem 'jquery-rails'
+gem 'nilify_blanks'
 gem 'paperclip'
 gem 'pg'
 
