@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+# gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -28,9 +28,12 @@ group :development do
   gem 'bullet'
 end
 
+gem 'aws-sdk'
+gem 'devise'
 gem 'jquery-rails'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'pg'
+
 # gem 'cocaine', "0.3.2"
 
 # To use ActiveModel has_secure_password

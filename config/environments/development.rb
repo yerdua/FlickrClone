@@ -35,6 +35,9 @@ FlickrClone::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # To make Devise work
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   # This is what makes paperclip save to AWS.
   # Turn this back on to test that
   #
