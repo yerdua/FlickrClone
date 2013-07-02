@@ -25,10 +25,13 @@ group :development do
   gem 'annotate', ">=2.5.0"
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
 end
 
 gem 'jquery-rails'
-gem 'paperclip', "~> 3.0"
+gem 'paperclip'
+gem 'aws-sdk'
+# gem 'cocaine', "=0.3.2"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
