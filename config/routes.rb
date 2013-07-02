@@ -9,6 +9,7 @@ FlickrClone::Application.routes.draw do
   end
   resources :users do
     resource :friendship, only: [:create, :destroy]
+    resources :photos, only: [:index]
   end
   resource :session, only: [:create, :destroy, :new]
 end

@@ -15,7 +15,9 @@
 class Photo < ActiveRecord::Base
   attr_accessible :owner_id, :image
   
-  has_attached_file :image# , styles: {
+  has_attached_file :image
+  #styles are broken because of some crap with paperclip and cocaine gems
+  # , styles: {
 #     thumb: '100x100',
 #     medium: '600x600'
 #   }
@@ -24,4 +26,8 @@ class Photo < ActiveRecord::Base
   
   has_many :photo_shares
   has_many :groups, :through => :photo_shares
+  
+  validates_attachment :image,
+    :presence => true,
+    :content_type => { :content_type => ['image/jpg', 'image/jpeg'] }
 end
