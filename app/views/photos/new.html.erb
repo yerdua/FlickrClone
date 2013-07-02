@@ -1,4 +1,2 @@
-<%= form_for(@photo, :html => { :multipart => true }) do |f| %>
-  <%= f.file_field :image %>
-  <%= f.submit %>
-<% end %>
+<h1>Upload a photo!</h1>
+<%= render :partial => 'form' %>

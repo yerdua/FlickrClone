@@ -9,7 +9,8 @@ class PhotosController < ApplicationController
     if @photo.save
       redirect_to photo_url(@photo)
     else
-      render :json => @photo.errors.full_messages
+      @errors = @photo.errors.full_messages
+      render :new
     end
   end
   
@@ -18,5 +19,6 @@ class PhotosController < ApplicationController
   end
   
   def index
+    @photos = User.find(params[:user_id]).photos
   end
 end

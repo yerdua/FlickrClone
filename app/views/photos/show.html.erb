@@ -1,3 +1,7 @@
-Photo!
-
-<img src="<%= @photo.image.url %>">
+<div>
+  <img src="<%= @photo.image.url %>">
+</div>
+<div>
+  <h1><%= @photo.title %></h1>
+  <p><%= @photo.description.html_safe unless @photo.description.nil? %></p>
+</div>x

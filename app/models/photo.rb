@@ -10,10 +10,12 @@
 #  image_content_type :string(255)
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  description        :text
+#  title              :string(255)
 #
 
 class Photo < ActiveRecord::Base
-  attr_accessible :owner_id, :image
+  attr_accessible :owner_id, :image, :title, :description
   
   has_attached_file :image
   #styles are broken because of some crap with paperclip and cocaine gems

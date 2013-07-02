@@ -37,8 +37,10 @@ class User < ActiveRecord::Base
                   
   validates :name, :password, :presence => true
   validates :name, :uniqueness => { :case_sensitive => false }
-  validates :email, :uniqueness => { :case_sensitive => false,
-            :allow_nil => true }
+  validates :email, :uniqueness => { 
+            :case_sensitive => false,
+            :allow_nil => true
+            }
   
   has_many :friendships
   has_many :friends, :through => :friendships
