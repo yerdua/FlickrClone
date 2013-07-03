@@ -1,0 +1,13 @@
+<div class="meta">
+  <h1><%= @album.name %></h1>
+  <p><%= @album.description.html_safe unless @album.description.nil? %>
+</div>
+<div class="photos">
+  <% @album.photos.each do |photo| %>
+    <div class="thumb">
+      <a href="<%= photo_url(photo) %>"><img 
+        src="<%= photo.image.url(:thumb) %>"></a>
+        
+    </div>
+  <% end %>
+</div>

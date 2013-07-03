@@ -25,6 +25,9 @@ class Photo < ActiveRecord::Base
   
   belongs_to :owner, :class_name => 'User'
   
+  has_many :album_inclusions
+  has_many :albums, :through => :album_inclusions
+  
   has_many :photo_shares
   has_many :groups, :through => :photo_shares
   

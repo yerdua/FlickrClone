@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130702230221) do
+ActiveRecord::Schema.define(:version => 20130703165136) do
+
+  create_table "album_inclusions", :force => true do |t|
+    t.integer  "photo_id",   :null => false
+    t.integer  "album_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "album_inclusions", ["album_id"], :name => "index_album_inclusions_on_album_id"
+  add_index "album_inclusions", ["photo_id", "album_id"], :name => "index_album_inclusions_on_photo_id_and_album_id", :unique => true
+  add_index "album_inclusions", ["photo_id"], :name => "index_album_inclusions_on_photo_id"
+
+  create_table "albums", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name",        :null => false
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "albums", ["name"], :name => "index_albums_on_name"
+  add_index "albums", ["owner_id"], :name => "index_albums_on_owner_id"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id",    :null => false

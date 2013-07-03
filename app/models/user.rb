@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
             :case_sensitive => false,
             :allow_nil => true
             }
+            
+  has_many :albums, :foreign_key => :owner_id, :inverse_of => :owner
   
   has_many :friendships
   has_many :friends, :through => :friendships
