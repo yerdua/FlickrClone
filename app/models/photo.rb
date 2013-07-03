@@ -17,12 +17,11 @@
 class Photo < ActiveRecord::Base
   attr_accessible :owner_id, :image, :title, :description
   
-  has_attached_file :image
-  #styles are broken because of some crap with paperclip and cocaine gems
-  # , styles: {
-#     thumb: '100x100',
-#     medium: '600x600'
-#   }
+  has_attached_file :image, styles: {
+    thumb: '100x100',
+    small: '300x300',
+    medium: '800x800'
+  }
   
   belongs_to :owner, :class_name => 'User'
   

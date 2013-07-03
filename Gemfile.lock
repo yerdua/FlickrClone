@@ -44,10 +44,7 @@ GEM
     builder (3.0.4)
     bullet (4.6.0)
       uniform_notifier
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.0)
-      climate_control (>= 0.0.3, < 1.0)
+    cocaine (0.4.2)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -72,6 +69,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    friendly_id (4.0.9)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -89,11 +87,11 @@ GEM
       activesupport (>= 3.0.0)
     nokogiri (1.5.10)
     orm_adapter (0.4.0)
-    paperclip (3.4.2)
+    paperclip (3.3.1)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
+      cocaine (~> 0.4.0)
       mime-types
     pg (0.12.2)
     polyglot (0.3.3)
@@ -159,9 +157,10 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  friendly_id (~> 4.0)
   jquery-rails
   nilify_blanks
-  paperclip
+  paperclip (~> 3.3.0)
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)

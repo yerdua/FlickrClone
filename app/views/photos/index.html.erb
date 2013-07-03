@@ -1,7 +1,8 @@
 <ul>
   <% @photos.each do |photo| %>
     <li>
-      <a href="<%= photo_url(photo) %>"><img src="<%= photo.image.url %>"></a>
+      <a href="<%= photo_url(photo) %>"><img 
+        src="<%= photo.image.url(:small) %>"></a>
     </li>
   <% end %>
 </ul>

@@ -30,9 +30,10 @@ end
 
 gem 'aws-sdk'
 gem 'devise'
+gem 'friendly_id', '~> 4.0'
 gem 'jquery-rails'
 gem 'nilify_blanks'
-gem 'paperclip'
+gem 'paperclip', "~> 3.3.0"
 gem 'pg'
 
 # gem 'cocaine', "0.3.2"

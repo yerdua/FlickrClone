@@ -19,6 +19,9 @@
 #
 
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name
+  
   nilify_blanks :before => :validation
   
   attr_accessor :login
