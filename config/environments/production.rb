@@ -67,12 +67,12 @@ FlickrClone::Application.configure do
   
   config.paperclip_defaults = {
     :storage => :s3,
+    :region => 'us-west-2',
+    :endpoint => 's3-us-west-2.amazonaws.com',
     :s3_credentials => {
       :bucket => ENV['AWS_BUCKET'],
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
-      :region => 'us-west-2',
-      :endpoint => 's3-us-west-2.amazonaws.com'
     }
   }
 end
