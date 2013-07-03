@@ -29,6 +29,7 @@ group :development do
 end
 
 gem 'aws-sdk'
+gem 'backbone-on-rails'
 gem 'devise'
 gem 'friendly_id', '~> 4.0'
 gem 'jquery-rails'

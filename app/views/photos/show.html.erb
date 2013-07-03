@@ -1,7 +1,14 @@
-<div>
-  <img src="<%= @photo.image.url(:medium) %>">
+<div class="content">
+  <div>
+    <img src="<%= @photo.image.url(:medium) %>">
+  </div>
+  <div>
+    <h1><%= @photo.title %></h1>
+    <p><%= @photo.description.html_safe unless @photo.description.nil? %></p>
+  </div>
 </div>
-<div>
-  <h1><%= @photo.title %></h1>
-  <p><%= @photo.description.html_safe unless @photo.description.nil? %></p>
+<div class="sidebar">
+  <% if @albums %>
+    <%= render :partial => 'add_to_album' %>
+  <% end %>
 </div>

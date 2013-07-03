@@ -1,0 +1,20 @@
+<ul>
+  <% @albums.each do |album| %>
+  <% li_class = @photo.album_ids.include?(album.id) ? %>
+    <% 'in_album' : 'not_in_album'%>
+    <li class="<%= li_class %>">
+      <%= album.name %>
+      <%= button_to "add to album",
+        photo_album_inclusions_url(@photo),
+        remote: true,
+        album_id: album.id,
+        class: 'add_to_album_button' %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $(".not_in_album form").on('submit', function(event){
+    console.log(event)
+  });
+</script>

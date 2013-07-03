@@ -17,6 +17,9 @@ class PhotosController < ApplicationController
   
   def show
     @photo = Photo.find(params[:id])
+    if (current_user = @photo.owner)
+      @albums = current_user.albums
+    end
   end
   
   def index
