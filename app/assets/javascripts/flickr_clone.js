@@ -4,7 +4,7 @@ window.FlickrClone = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    console.log('backbone exists')
   }
 };
 

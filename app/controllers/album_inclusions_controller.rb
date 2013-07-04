@@ -10,6 +10,11 @@ class AlbumInclusionsController < ApplicationController
     end
   end
   
+  def destroy
+    AlbumInclusion.where(params[:id]).destroy
+    render nil
+  end
+  
   # To do:
   # add authorization
 end

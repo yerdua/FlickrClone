@@ -14,7 +14,6 @@ FlickrClone::Application.routes.draw do
   
   resources :photos, only: [:create, :destroy, :new, :show, :update] do
     # resources :photo_shares, only: [:create, :destroy]
-    resources :album_inclusions, only: [:create, :destroy]
   end
   
   resources :users do

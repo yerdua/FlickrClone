@@ -1,4 +1,4 @@
-<div class="content">
+<div id="content">
   <div>
     <img src="<%= @photo.image.url(:medium) %>">
   </div>
@@ -7,8 +7,16 @@
     <p><%= @photo.description.html_safe unless @photo.description.nil? %></p>
   </div>
 </div>
-<div class="sidebar">
+<div id="sidebar">
   <% if @albums %>
-    <%= render :partial => 'add_to_album' %>
+    <%= render :partial => 'albums_form' %>
   <% end %>
 </div>
+
+<div id="popup"></div>
+
+<script type="text/javascript">
+  new FlickrClone.Routers.Photos($('#sidebar'),
+    $('#popup'),
+    <%= @photo.id %>);
+</script>

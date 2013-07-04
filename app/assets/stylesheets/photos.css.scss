@@ -2,22 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.content {
+#content {
   display: inline-block;
 }
 
-.sidebar {
+#sidebar {
   display:inline-block;
-}
-
-.in_album {
-  .add_to_album_button {
-    display: none;
-  }
-}
-
-.not_in_album {
-  .remove_from_album_button {
-    display: none;
-  }
 }

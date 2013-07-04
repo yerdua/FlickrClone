@@ -33,6 +33,7 @@ gem 'backbone-on-rails'
 gem 'devise'
 gem 'friendly_id', '~> 4.0'
 gem 'jquery-rails'
+gem 'js-routes'
 gem 'nilify_blanks'
 gem 'paperclip', "~> 3.3.0"
 gem 'pg'

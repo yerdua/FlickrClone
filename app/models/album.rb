@@ -11,11 +11,14 @@
 #
 
 class Album < ActiveRecord::Base
-  attr_accessible :description, :name, :owner_id
+  attr_accessible :description, :name, :owner_id, :album_inclusions_attributes
   
   validates :name, :presence => true
   
   belongs_to :owner, :class_name => 'User'
   has_many :album_inclusions
   has_many :photos, :through => :album_inclusions
+  
+  accepts_nested_attributes_for :album_inclusions, :allow_destroy => true
+  
 end

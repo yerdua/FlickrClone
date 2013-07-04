@@ -15,7 +15,8 @@
 #
 
 class Photo < ActiveRecord::Base
-  attr_accessible :owner_id, :image, :title, :description
+  attr_accessible :owner_id, :image, :title, :description,
+                  :album_ids, :group_ids
   
   has_attached_file :image, styles: {
     thumb: '100x100',
@@ -34,4 +35,8 @@ class Photo < ActiveRecord::Base
   validates_attachment :image,
     :presence => true,
     :content_type => { :content_type => ['image/jpg', 'image/jpeg'] }
+    
+  def as_json(options = {})
+    super(:methods => [:album_ids, :group_ids])
+  end
 end

@@ -15,6 +15,17 @@ class PhotosController < ApplicationController
     end
   end
   
+  def update
+    @photo = Photo.find(params[:id])
+    @photo.update_attributes(params[:photo])
+    
+    if @photo.save
+      render :json => @photo
+    else
+      render :json => @photo.errors.full_messages
+    end
+  end
+  
   def show
     @photo = Photo.find(params[:id])
     if (current_user = @photo.owner)
