@@ -18,4 +18,12 @@ class AlbumsController < ApplicationController
   def show
     @album = Album.includes(:photos).find(params[:id])
   end
+  
+  def index
+    if (current_user)
+      render :json => current_user.albums
+    else
+      render nil
+    end
+  end
 end

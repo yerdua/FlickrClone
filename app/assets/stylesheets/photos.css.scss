@@ -9,3 +9,10 @@
 #sidebar {
   display:inline-block;
 }
+
+#photostream.small_photos {
+  background-color: #eee;
+  div.photo {
+   display: inline-block;
+  }
+}

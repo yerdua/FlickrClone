@@ -3,6 +3,7 @@ window.FlickrClone = {
   Collections: {},
   Views: {},
   Routers: {},
+  Store: {},
   initialize: function() {
     console.log('backbone exists')
   }

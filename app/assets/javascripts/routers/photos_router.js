@@ -15,6 +15,7 @@ FlickrClone.Routers.Photos = Backbone.Router.extend({
   },
   
   addToAlbums: function () {
+    console.log('does things at all');
     var that = this;
     console.log("add to albums was called");
     var view = new FlickrClone.Views.PhotoAddToAlbums({

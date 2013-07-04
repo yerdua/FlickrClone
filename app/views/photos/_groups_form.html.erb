@@ -1,0 +1,26 @@
+<h4>Add to / Remove from Groups</h4>
+<%= form_for @photo,
+  :remote => true,
+  :html => { :id => 'group_form' } do |f| %>
+  <ul>
+    <% @groups.each do |group| %>
+      <li>
+        <input
+          type="checkbox"
+          name="photo[group_ids][]"
+          id="photo_group_ids_<%= group.id %>"
+          value="<%= group.id %>"
+          <%= "checked" if @photo.group_ids.include?(group.id) %>>
+        <label for="photo_group_ids_<%= group.id %>"><%= group.name %></label>
+      </li>
+    <% end %>
+  </ul>
+  <input type="hidden" name="photo[group_ids][]" value="">
+  <%= f.submit "update groups" %>
+<% end %>
+
+<script type="text/javascript">
+  $("#group_form").on('ajax:success', function(event, response) {
+    console.log('yay! updated groups for this photo!');
+  });
+</script>

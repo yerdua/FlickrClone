@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class PhotoShares < ActiveRecord::Base
+class PhotoShare < ActiveRecord::Base
   attr_accessible :group_id, :photo_id
   
   belongs_to :group

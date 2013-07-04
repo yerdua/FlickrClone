@@ -8,6 +8,8 @@
   </div>
 </div>
 <div id="sidebar">
+  <%= render :partial => 'groups_form' %>
+  
   <% if @albums %>
     <%= render :partial => 'albums_form' %>
   <% end %>
@@ -19,4 +21,5 @@
   new FlickrClone.Routers.Photos($('#sidebar'),
     $('#popup'),
     <%= @photo.id %>);
+  Backbone.history.start();
 </script>
