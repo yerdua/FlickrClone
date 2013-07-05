@@ -1,4 +1,7 @@
-<h1><%= @group.name %></h1>
+<div class="meta">
+  <h1><%= @group.name %></h1>
+  <p><%= @group.description.html_safe unless @group.description.nil? %></p>
+</div>
 
 <div id="member_list">
   <ul>
