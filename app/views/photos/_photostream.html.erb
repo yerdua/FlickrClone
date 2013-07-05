@@ -2,7 +2,7 @@
   <% photos.each do |photo| %>
     <div class="photo">
       <a href="<%= photo_url(photo) %>"><img 
-        src="<%= photo.image.url(:small) %>"></a>
+        src="<%= photo.image.url(size) %>"></a>
     </div>
   <% end %>
 </div>

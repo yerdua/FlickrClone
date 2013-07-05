@@ -19,7 +19,8 @@
   </div>
 </div>
 
-<%= render partial: 'photos/photostream', locals: { photos: @user.photos } %>
+<%= render partial: 'photos/photostream', locals: 
+{ photos: @user.photos, size: :small } %>
 
 <script type="text/javascript">
   $('.friendship_button form').on("ajax:success", function(){

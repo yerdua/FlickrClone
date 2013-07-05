@@ -34,9 +34,12 @@ gem 'devise'
 gem 'friendly_id', '~> 4.0'
 gem 'jquery-rails'
 gem 'js-routes'
+gem 'less-rails'
 gem 'nilify_blanks'
 gem 'paperclip', "~> 3.3.0"
 gem 'pg'
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
 
 # gem 'cocaine', "0.3.2"
 

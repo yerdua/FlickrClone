@@ -3,4 +3,4 @@
   <p><%= @album.description.html_safe unless @album.description.nil? %>
 </div>
 
-<%= render partial: 'photos/photostream', locals: { photos: @album.photos } %>
+<%= render partial: 'photos/photostream', locals: { photos: @album.photos, :size => :small } %>

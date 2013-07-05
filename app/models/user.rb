@@ -56,9 +56,9 @@ class User < ActiveRecord::Base
   has_many :photos, :foreign_key => :owner_id
   has_many :recent_photos,
     :foreign_key => :owner_id,
-    :limit => 6,
+    :limit => 3,
     :class_name => 'Photo'
-  
+      
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -67,6 +67,15 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+  
+  def friends_recent_photos
+    photos = []
+    self.friends.each do |friend|
+      photos += friend.recent_photos
+    end
+    
+    photos.sort { |p1, p2| p2.created_at <=> p1.created_at }
   end
   
   def is_friend?(other_user)

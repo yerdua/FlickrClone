@@ -9,23 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap_and_overrides
  *= require_tree .
  */
-
-div.navigation div {
-  display: inline-block;
-}
-
-div.navigation ul {
-  display: inline-block;
-  list-style-type: none;
-}
-
-div.navigation li {
-  display: inline-block;
-  margin: 0 10px;
-  padding: 6px;
-}
 
 .hidden {
   display: none;
