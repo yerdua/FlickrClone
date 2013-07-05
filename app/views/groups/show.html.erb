@@ -11,4 +11,5 @@
   </ul>
 </div>
 
-<%= render partial: 'photos/photostream' %>
+<%= render partial: 'photos/photostream', :locals => 
+  { :photos => @group.photos } %>

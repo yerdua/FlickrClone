@@ -1,0 +1,29 @@
+<h1><%= @user.name %></h1>
+
+<% if current_user && !@user.is_friend?(current_user) %>
+
+<% end%>
+
+<% is_hidden = !user_signed_in? || current_user == @user %>
+<% friended = user_signed_in? && current_user.friends.include?(@user) %>
+<div class="friendship_button
+  <%= 'hidden' if is_hidden %>
+  <%= friended ? 'friended' : 'not_friended'%>">
+  <div id="add_friend">
+    <%= button_to 'Add as Friend', user_friendship_url(@user.id),
+      method: :post, remote: true %>
+  </div>
+  <div id="remove_friend">
+    <%= button_to 'Unfriend', user_friendship_url(@user.id),
+      method: :delete, remote: true %>
+  </div>
+</div>
+
+<%= render partial: 'photos/photostream', locals: { photos: @user.photos } %>
+
+<script type="text/javascript">
+  $('.friendship_button form').on("ajax:success", function(){
+    $('.friendship_button').toggleClass('friended');
+    $('.friendship_button').toggleClass('not_friended');
+  });
+</script>

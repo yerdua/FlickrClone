@@ -1,5 +1,5 @@
 <div id="photostream" class="small_photos">
-  <% @photos.each do |photo| %>
+  <% photos.each do |photo| %>
     <div class="photo">
       <a href="<%= photo_url(photo) %>"><img 
         src="<%= photo.image.url(:small) %>"></a>

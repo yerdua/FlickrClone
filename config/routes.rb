@@ -14,10 +14,11 @@ FlickrClone::Application.routes.draw do
   
   resources :photos, only: [:create, :destroy, :new, :show, :update]
   
-  resources :users do
-    # resource :friendship, only: [:create, :destroy]
-    resources :photos, only: [:index]
+  resources :users, only: [:show] do
     resources :albums, only: [:index]
+    resource  :friendship, only: [:create, :destroy]
+    resources :groups, only: [:index]
+    resources :photos, only: [:index]
   end
   
 end

@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def is_friend?(other_user)
+    other_user.friend_ids.include?(self.id)
+  end
+  
   def email_required?
     false
   end

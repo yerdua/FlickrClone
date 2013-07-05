@@ -26,3 +26,7 @@ div.navigation li {
   margin: 0 10px;
   padding: 6px;
 }
+
+.hidden {
+  display: none;
+}
