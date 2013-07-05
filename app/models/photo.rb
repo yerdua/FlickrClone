@@ -32,6 +32,8 @@ class Photo < ActiveRecord::Base
   has_many :photo_shares
   has_many :groups, :through => :photo_shares
   
+  default_scope :order => 'created_at DESC'
+  
   validates_attachment :image,
     :presence => true,
     :content_type => { :content_type => ['image/jpg', 'image/jpeg'] }

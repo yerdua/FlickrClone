@@ -1,11 +1,13 @@
 FlickrClone::Application.routes.draw do
-  root :to => "photos#new"
+  root :to => "root#root"
   
   devise_for :users
   
   resources :albums do
     resources :photos, only: [:index]
   end
+  
+  resources :friends, only: [:index]
 
   resources :groups do
     resource :membership, only: [:create, :destroy]

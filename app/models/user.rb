@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :group_memberships
   
   has_many :photos, :foreign_key => :owner_id
+  has_many :recent_photos,
+    :foreign_key => :owner_id,
+    :limit => 6,
+    :class_name => 'Photo'
   
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

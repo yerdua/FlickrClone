@@ -1,0 +1,4 @@
+<% @user.friends.each do |friend| %>
+<h4><%= friend.name %></h4>
+<%= render :partial => 'photos/photostream', locals: {photos: friend.recent_photos } %>
+<% end %>
