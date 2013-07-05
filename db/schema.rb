@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703165136) do
+ActiveRecord::Schema.define(:version => 20130705180250) do
 
   create_table "album_inclusions", :force => true do |t|
     t.integer  "photo_id",   :null => false
@@ -55,13 +55,15 @@ ActiveRecord::Schema.define(:version => 20130703165136) do
   add_index "group_memberships", ["user_id"], :name => "index_group_memberships_on_user_id"
 
   create_table "groups", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",                           :null => false
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "only_members", :default => true, :null => false
   end
 
   add_index "groups", ["name"], :name => "index_groups_on_name"
+  add_index "groups", ["only_members"], :name => "index_groups_on_only_members"
 
   create_table "photo_shares", :force => true do |t|
     t.integer  "photo_id"

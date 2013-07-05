@@ -11,14 +11,12 @@ FlickrClone.Routers.Photos = Backbone.Router.extend({
   },
   
   routes: {
-    "addToAlbums" : "addToAlbums"
+    "" : "openAlbumForm"
   },
   
-  addToAlbums: function () {
-    console.log('does things at all');
+  openAlbumForm: function () {
     var that = this;
-    console.log("add to albums was called");
-    var view = new FlickrClone.Views.PhotoAddToAlbums({
+    var view = new FlickrClone.Views.PhotoAlbumForm({
       model: that.photo
     })
     this.$popup.html(view.render().$el);

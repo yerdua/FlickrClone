@@ -16,6 +16,10 @@ class GroupsController < ApplicationController
     end
   end
   
+  def index
+    @groups = user_signed_in? ? current_user.groups : []
+  end
+  
   def show
     @group = Group.includes(:photos, :members).find(params[:id])
     @photos = @group.photos

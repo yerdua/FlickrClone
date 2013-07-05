@@ -1,13 +1,28 @@
-<%= form_for @group do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
+<%= form_for @group, html: { class: 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
   
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
+  <div class="control-group">
+    <%= f.label :description, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_area :description %>
+    </div>
+  </div>
   
-  <%= f.submit @group.persisted? ? 'Update!' : 'Create Group!' %>
+  <div class="control-group">
+    <%= f.label :only_members, 'members only' %>
+    <div class="controls">
+      <%= f.check_box :only_members %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit @group.persisted? ? 'Update!' : 'Create Group!',
+        class: 'btn' %>
+    </div>
+  </div>
 <% end %>

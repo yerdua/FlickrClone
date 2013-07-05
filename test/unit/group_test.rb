@@ -2,11 +2,12 @@
 #
 # Table name: groups
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)      not null
-#  description :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string(255)      not null
+#  description  :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  only_members :boolean          default(TRUE), not null
 #
 
 require 'test_helper'

@@ -1,6 +1,6 @@
-FlickrClone.Views.PhotoAddToAlbums = Backbone.View.extend({
+FlickrClone.Views.PhotoAlbumForm = Backbone.View.extend({
   
-  template: JST['photos/add_to_albums'],
+  template: JST['photos/album_form'],
   
   render: function () {
     var renderedContent = this.template({});
