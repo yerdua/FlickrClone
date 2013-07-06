@@ -1,27 +1,31 @@
-<h4>Add to or Remove from Albums</h4>
-<%= form_for @photo,
-  :remote => true,
-  :html => { :id => 'album_form' } do |f| %>
+<div id="add_remove_albums">
+  <h4>Add to or Remove from Albums</h4>
   <ul>
     <% @albums.each do |album| %>
-      <li>
-        <input
-          type="checkbox"
-          name="photo[album_ids][]"
-          id="photo_album_ids_<%= album.id %>"
-          value="<%= album.id %>"
-          <%= "checked" if @photo.album_ids.include?(album.id) %>>
-        <label for="photo_album_ids_<%= album.id %>"><%= album.name %></label>
+      <% link_class = @photo.album_ids.include?(album.id) ?
+        'remove_from' : 'add_to' %>
+      <li class="<%= link_class %>" data-id="<%= album.id %>">
+        <%= album.name %>
       </li>
     <% end %>
   </ul>
-  <input type="hidden" name="photo[album_ids][]" value="">
-  <%= f.submit "update albums" %>
-<% end %>
+</div>
 
 <script type="text/javascript">
-  $("#album_form").on('ajax:success', function(event, response) {
-    console.log(response);
-    console.log('yay! updated albums for this photo!');
+  $("#add_remove_albums li").on("click", function (event) {
+    var thisLink = event.currentTarget;
+    var action = thisLink.className === 'remove_from' ?
+      'remove_photo' : 'add_photo';
+    $.ajax({
+      url: "/albums/" + thisLink.getAttribute('data-id') + "/" + action,
+      type: "POST",
+      data: {"photo_id" : <%= @photo.id %> },
+      success: function () {
+        $(thisLink).toggleClass('add_to');
+        $(thisLink).toggleClass('remove_from');
+      }
+    });
   });
 </script>
+
+

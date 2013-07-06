@@ -1,5 +1,5 @@
-<div id="content">
-  <div>
+<div id="content" class="span8">
+  <div class="photo">
     <img src="<%= @photo.image.url(:medium) %>">
   </div>
   <div>
@@ -7,21 +7,10 @@
     <p><%= @photo.description.html_safe unless @photo.description.nil? %></p>
   </div>
 </div>
-<div id="sidebar">
+<div id="sidebar" class="span4">
   <%= render :partial => 'groups_form' %>
   
   <% if @albums %>
     <%= render :partial => 'albums_form' %>
-  <% end %>
-  
-  <a href="#/openAlbumForm">add to albums popup</a>
+  <% end %>  
 </div>
-
-<div id="popup"></div>
-
-<script type="text/javascript">
-  new FlickrClone.Routers.Photos($('#sidebar'),
-    $('#popup'),
-    <%= @photo.id %>);
-  Backbone.history.start();
-</script>

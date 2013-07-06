@@ -21,4 +21,7 @@ class Album < ActiveRecord::Base
   
   accepts_nested_attributes_for :album_inclusions, :allow_destroy => true
   
+  def as_json(options = {})
+    super(options.merge(methods: [:photo_ids]))
+  end
 end

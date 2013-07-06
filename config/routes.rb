@@ -7,6 +7,20 @@ FlickrClone::Application.routes.draw do
     resources :photos, only: [:index]
   end
   
+  post 'albums/:id/add_photo',
+    to: 'albums#add_photo',
+    as: 'add_photo_to_album'
+  post 'albums/:id/remove_photo',
+    to: 'albums#remove_photo',
+    as: 'remove_photo_from_album'
+    
+  post 'groups/:id/add_photo',
+    to: 'groups#add_photo',
+    as: 'add_photo_to_group'
+  post 'groups/:id/remove_photo',
+    to: 'groups#remove_photo',
+    as: 'remove_photo_from_group'
+  
   resources :friends, only: [:index]
 
   resources :groups do

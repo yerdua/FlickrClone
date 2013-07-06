@@ -34,6 +34,11 @@ class PhotosController < ApplicationController
       @albums = current_user.albums
     end
     
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :json => @photo }
+    end
+    
   end
   
   def index

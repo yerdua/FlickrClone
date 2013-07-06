@@ -4,14 +4,14 @@ FlickrClone.Routers.Photos = Backbone.Router.extend({
     this.$popup = $popup;
     this.photo = new FlickrClone.Models.Photo({ id: photoId });
     this.photo.fetch({
-      success: function() {
-        console.log('fetched a thing');
+      success: function(photo) {
+        console.log(photo);
       }
     });
   },
   
   routes: {
-    "" : "openAlbumForm"
+    "openAlbumForm" : "openAlbumForm"
   },
   
   openAlbumForm: function () {

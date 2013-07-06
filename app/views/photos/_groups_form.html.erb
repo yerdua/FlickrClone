@@ -1,26 +1,29 @@
-<h4>Add to / Remove from Groups</h4>
-<%= form_for @photo,
-  :remote => true,
-  :html => { :id => 'group_form' } do |f| %>
+<div id="add_remove_groups">
+  <h4>Add to / Remove from Groups</h4>
   <ul>
     <% @groups.each do |group| %>
-      <li>
-        <input
-          type="checkbox"
-          name="photo[group_ids][]"
-          id="photo_group_ids_<%= group.id %>"
-          value="<%= group.id %>"
-          <%= "checked" if @photo.group_ids.include?(group.id) %>>
-        <label for="photo_group_ids_<%= group.id %>"><%= group.name %></label>
+      <% link_class = @photo.group_ids.include?(group.id) ?
+        'remove_from' : 'add_to' %>
+      <li class="<%= link_class %>" data-id="<%= group.id %>">
+        <%= group.name %>
       </li>
     <% end %>
   </ul>
-  <input type="hidden" name="photo[group_ids][]" value="">
-  <%= f.submit "update groups" %>
-<% end %>
+</div>
 
 <script type="text/javascript">
-  $("#group_form").on('ajax:success', function(event, response) {
-    console.log('yay! updated groups for this photo!');
+  $("#add_remove_groups li").on("click", function (event) {
+    var thisLink = event.currentTarget;
+    var action = thisLink.className === 'remove_from' ?
+      'remove_photo' : 'add_photo';
+    $.ajax({
+      url: "/groups/" + thisLink.getAttribute('data-id') + "/" + action,
+      type: "POST",
+      data: {"photo_id" : <%= @photo.id %> },
+      success: function () {
+        $(thisLink).toggleClass('add_to');
+        $(thisLink).toggleClass('remove_from');
+      }
+    });
   });
 </script>

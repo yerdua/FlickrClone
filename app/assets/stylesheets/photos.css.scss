@@ -16,3 +16,34 @@
    display: inline-block;
   }
 }
+
+#add_remove_albums, #add_remove_groups {
+  ul {
+    list-style: none;
+    height: 150px;
+    overflow: auto;
+    overflow-x: hidden;
+    li {
+      cursor: pointer;
+    }
+  }
+  .add_to {
+    &:hover {
+      color: #FFFFFF;
+      background-color: #0000FF;
+    }
+  }
+  .remove_from {
+    color: #CCCCCC;
+    &:hover {
+      color: #FFFFFF;
+      background-color: #FF0000;
+    }
+  }
+}
+
+.photo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

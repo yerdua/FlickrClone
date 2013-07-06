@@ -32,13 +32,13 @@ class Photo < ActiveRecord::Base
   has_many :photo_shares
   has_many :groups, :through => :photo_shares
   
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'photos.created_at DESC'
   
   validates_attachment :image,
     :presence => true,
     :content_type => { :content_type => ['image/jpg', 'image/jpeg'] }
     
   def as_json(options = {})
-    super(:methods => [:album_ids, :group_ids])
+    super(options.merge(:methods => [:album_ids, :group_ids]))
   end
 end

@@ -1,4 +1,22 @@
 class GroupsController < ApplicationController
+  def add_photo
+    @group = Group.find(params[:id])
+    @group.photo_shares.build(photo_id: params[:photo_id])
+
+    if @group.save
+      render json: @group
+    else
+      render json: @group.errors.full_messages, status: 422
+    end
+  end
+  
+  def remove_photo
+    @album = Group.find(params[:id])
+    @album.photo_ids -= [params[:photo_id].to_i]
+    
+    render json: @group
+  end
+  
   def new
     @group = Group.new
   end    
