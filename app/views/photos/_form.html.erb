@@ -12,6 +12,60 @@
     <%= f.label :description %><br />
     <%= f.text_area :description%>
   </p>
+  
   <%= f.file_field :image %>
-  <%= f.submit @photo.persisted? ? 'Update!' : 'Upload!' %>
+  <%= f.submit @photo.persisted? ? 'Update!' : 'Upload!', class: 'btn' %>
 <% end %>
+
+<a
+  href="#add_remove_albums"
+  role="button" class="btn"
+  data-toggle="modal">Add to Albums</a>
+<div
+  id="add_remove_albums"
+  class="modal hide fade"
+  role="dialog"
+  aria-hidden="true">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-hidden="true">x</button>
+      <h3>Add to Albums</h3>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <% @albums.each do |album| %>
+        <% link_class = @photo.album_ids.include?(album.id) ?
+          'remove_from' : 'add_to' %>
+        <li class="<%= link_class %>" data-id="<%= album.id %>">
+          <%= album.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="hidden">
+      Close
+    </button>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#add_remove_albums li").on("click", function (event) {
+    var $thisLink = $(event.currentTarget);
+    var addToAlbum = function (id) {
+      $('form').append("<input type='hidden' name='photo[album_ids][]' value=" + id + ">");
+    };
+    
+    if ($thisLink.hasClass('add_to')){
+      addToAlbum($thisLink.attr('data-id'));
+    }
+    
+    $thisLink.toggleClass('add_to');
+    $thisLink.toggleClass('remove_from');
+
+  });
+  
+</script>

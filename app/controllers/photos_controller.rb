@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   def new
     @photo = Photo.new
+    @albums = user_signed_in? ? current_user.albums : []
   end
   
   def create
