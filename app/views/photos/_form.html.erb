@@ -25,21 +25,21 @@
   id="add_remove_albums"
   class="modal hide fade"
   role="dialog"
+  aria-labelledby="add_remove_albums"
   aria-hidden="true">
   <div class="modal-header">
     <button
       type="button"
       class="close"
-      data-dismiss="modal"
-      aria-hidden="true">x</button>
-      <h3>Add to Albums</h3>
+      data-dismiss="modal">&times;</button>
+    <h3>Add to Albums</h3>
   </div>
   <div class="modal-body">
     <ul>
       <% @albums.each do |album| %>
-        <% link_class = @photo.album_ids.include?(album.id) ?
+        <% li_class = @photo.album_ids.include?(album.id) ?
           'remove_from' : 'add_to' %>
-        <li class="<%= link_class %>" data-id="<%= album.id %>">
+        <li class="<%= li_class %> album" data-id="<%= album.id %>">
           <%= album.name %>
         </li>
       <% end %>
@@ -52,20 +52,59 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  $("#add_remove_albums li").on("click", function (event) {
-    var $thisLink = $(event.currentTarget);
-    var addToAlbum = function (id) {
-      $('form').append("<input type='hidden' name='photo[album_ids][]' value=" + id + ">");
-    };
-    
-    if ($thisLink.hasClass('add_to')){
-      addToAlbum($thisLink.attr('data-id'));
-    }
-    
-    $thisLink.toggleClass('add_to');
-    $thisLink.toggleClass('remove_from');
+<a
+  href="#add_remove_groups"
+  role="button" class="btn"
+  data-toggle="modal">Add to Groups</a>
+<div
+  id="add_remove_groups"
+  class="modal hide fade"
+  role="dialog"
+  aria-labelledby="add_remove_groups"
+  aria-hidden="true">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal">&times;</button>
+    <h3>Add to Groups</h3>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <% @groups.each do |group| %>
+        <% li_class = @photo.group_ids.include?(group.id) ?
+          'remove_from' : 'add_to'%>
+        <li class="<%= li_class %> group" data-id="<%= group.id %>">
+          <%= group.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="hidden">
+      Close
+    </button>
+  </div>
+</div>
 
+<script type="text/javascript">
+  $("#add_remove_albums li, #add_remove_groups li").on(
+    "click", function (event) {
+      var $thisLi = $(event.currentTarget);
+      var itemId = $thisLi.attr('data-id');
+      var itemType = $thisLi.hasClass('album') ? 'album' : 'group';
+      var hiddenFieldId = "photo_" + itemType + "_ids_" + itemId;
+    
+      if ($thisLi.hasClass('add_to')) {
+        $('form').append(
+          "<input type='hidden' name='photo[" +
+          itemType + "_ids][]' value='" + itemId +
+          "' id='" + hiddenFieldId + "'>"
+        );
+      } else if ($thisLi.hasClass('remove_from')) {
+        $('input#' + hiddenFieldId).remove();
+      }
+      $thisLi.toggleClass('add_to');
+      $thisLi.toggleClass('remove_from');
   });
-  
 </script>

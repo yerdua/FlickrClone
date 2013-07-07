@@ -2,6 +2,7 @@ class PhotosController < ApplicationController
   def new
     @photo = Photo.new
     @albums = user_signed_in? ? current_user.albums : []
+    @groups = user_signed_in? ? current_user.groups : Group.allow_non_members
   end
   
   def create

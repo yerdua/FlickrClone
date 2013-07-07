@@ -35,7 +35,11 @@ class GroupsController < ApplicationController
   end
   
   def index
-    @groups = user_signed_in? ? current_user.groups : []
+    @groups = Group.all
+  end
+  
+  def mine
+    @groups = user_signed_in? ? current_user.groups : Group.allow_non_members
   end
   
   def show
