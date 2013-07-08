@@ -38,10 +38,12 @@ class AlbumsController < ApplicationController
   end
   
   def index
-    if (current_user)
-      render :json => current_user.albums
-    else
-      render nil
+    @user = User.includes(:albums).find(params[:user_id])
+    @albums = @user.albums
+    
+    respond_to do |format|
+      format.json { render :json => @albums }
+      format.html { render :index }
     end
   end
 end

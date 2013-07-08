@@ -13,6 +13,8 @@ class PhotosController < ApplicationController
       redirect_to photo_url(@photo)
     else
       @errors = @photo.errors.full_messages
+      @albums = user_signed_in? ? current_user.albums : []
+      @groups = user_signed_in? ? current_user.groups : Group.allow_non_members
       render :new
     end
   end
@@ -30,12 +32,9 @@ class PhotosController < ApplicationController
   
   def show
     @photo = Photo.find(params[:id], include: :owner)
-    
     @groups = user_signed_in? ? current_user.groups : Group.allow_non_members
-
-    if (user_signed_in? && current_user == @photo.owner)
-      @albums = current_user.albums
-    end
+    @albums = user_signed_in? && current_user == @photo.owner ? 
+      current_user.albums : []
     
     respond_to do |format|
       format.html { render :show }
