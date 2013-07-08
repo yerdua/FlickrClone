@@ -1,0 +1,8 @@
+<h1><%= @group.name %>: members</h1>
+<%= render partial: 'nav' %>
+
+<ul>
+  <% @members.each do |member| %>
+    <li><%= link_to member.name, user_url(member) %></li>
+  <% end %>
+</ul>

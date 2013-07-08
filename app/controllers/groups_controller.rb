@@ -8,18 +8,7 @@ class GroupsController < ApplicationController
     else
       render json: @group.errors.full_messages, status: 422
     end
-  end
-  
-  def remove_photo
-    @album = Group.find(params[:id])
-    @album.photo_ids -= [params[:photo_id].to_i]
-    
-    render json: @group
-  end
-  
-  def new
-    @group = Group.new
-  end    
+  end  
 
   def create
     @group = Group.new(params[:group])
@@ -35,11 +24,30 @@ class GroupsController < ApplicationController
   end
   
   def index
-    @groups = Group.all
+    if params[:user_id]
+      user = User.includes(:groups).find(params[:user_id])
+      @groups = user.groups
+      @title = "#{user.name}'s Groups"
+    else
+      @groups = Group.all
+      @title = "All Groups"
+    end
   end
   
-  def mine
-    @groups = user_signed_in? ? current_user.groups : Group.allow_non_members
+  def new
+    @group = Group.new
+  end
+  
+  def members
+    @group = Group.includes(:members).find(params[:id]);
+    @members = @group.members
+  end
+  
+  def remove_photo
+    @album = Group.find(params[:id])
+    @album.photo_ids -= [params[:photo_id].to_i]
+    
+    render json: @group
   end
   
   def show

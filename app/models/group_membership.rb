@@ -12,6 +12,8 @@
 class GroupMembership < ActiveRecord::Base
   attr_accessible :group_id, :user_id
   
+  validates :group_id, :uniqueness => { :scope => :user_id }
+  
   belongs_to :group
   belongs_to :user
 end

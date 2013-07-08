@@ -47,12 +47,15 @@ class PhotosController < ApplicationController
     if params[:user_id]
       @user = User.includes(:photos).find(params[:user_id])
       @photos = @user.photos
+      @title = "#{@user.name}'s Photostream"
     elsif params[:group_id]
       @group = Group.includes(photos: [:owner]).find(params[:group_id])
       @photos = @group.photos
+      @title = @group.name
     elsif params[:album_id]
-      @album = album.includes(:photos).find(params[:album_id])
+      @album = Album.includes(:photos).find(params[:album_id])
       @photos = @album.photos
+      @title = @album.name
     end
   end
 end

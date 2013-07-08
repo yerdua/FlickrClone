@@ -14,6 +14,7 @@ class AlbumInclusion < ActiveRecord::Base
   
   validates :photo, :album, :presence => true
   validates :photo_id, :uniqueness => { :scope => :album_id }
+  validate :current_user_owns_these_things
   
   belongs_to :photo
   belongs_to :album

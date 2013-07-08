@@ -1,3 +1,6 @@
-<h1>Contacts: recent photos</h1>
-<%= render partial: 'photos/photostream', locals: 
-{ photos: @user.friends_recent_photos, size: :small } %>
+<h1>List of Contacts</h1>
+<ul>
+  <% @friends.each do |friend| %>
+    <li><%= link_to friend.name, user_url(friend) %></li>
+  <% end %>
+</ul>

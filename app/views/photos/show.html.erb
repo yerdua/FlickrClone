@@ -8,6 +8,14 @@
   </div>
 </div>
 <div id="sidebar" class="span4">
+  <div class="info">
+    <% if @photo.owner %>
+      <h3><%= link_to @photo.owner.name, user_url(@photo.owner) %></h3>
+    <% else %>
+      <h3>anonymous photographer</h3>
+    <% end%>
+    <p>Uploaded on <%= @photo.created_at.strftime("%B %e, %Y") %></p>
+  </div>
   <%= render :partial => 'groups_form' %>
   
   <% if @albums %>

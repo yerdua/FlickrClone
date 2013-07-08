@@ -3,13 +3,7 @@
   <p><%= @group.description.html_safe unless @group.description.nil? %></p>
 </div>
 
-<div id="member_list">
-  <ul>
-    <% @group.members.each do |member| %>
-      <li><%= link_to member.name, user_photos_url(member) %></li>
-    <% end %>
-  </ul>
-</div>
+<%= render partial: 'nav' %>
 
 <%= render partial: 'photos/photostream', :locals => 
   { photos: @group.photos, size: :small } %>

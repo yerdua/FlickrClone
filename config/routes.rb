@@ -20,18 +20,19 @@ FlickrClone::Application.routes.draw do
   post 'groups/:id/remove_photo',
     to: 'groups#remove_photo',
     as: 'remove_photo_from_group'
-    
-  get 'groups/mine', to: 'groups#mine', as: 'current_user_groups'
-  
+      
   resources :friends, only: [:index]
+  get 'friends/photos', to: 'friends#photos', as: 'friends_photos'
 
   resources :groups do
-    resource :membership, only: [:create, :destroy]
+    resource :group_membership, only: [:create, :destroy]
     resources :photos, only: [:index]
   end
+  get 'groups/:id/members', to: 'groups#members', as: 'group_members' 
+  
   
   resources :photos, only: [:create, :destroy, :new, :show, :update]
-  
+    
   resources :users, only: [:show] do
     resources :albums, only: [:index]
     resource  :friendship, only: [:create, :destroy]

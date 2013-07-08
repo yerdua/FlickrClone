@@ -24,4 +24,8 @@ class Group < ActiveRecord::Base
   def self.allow_non_members
     Group.where(only_members: false)
   end
+  
+  def has_member?(user)
+    self.members.include?(user)
+  end
 end
