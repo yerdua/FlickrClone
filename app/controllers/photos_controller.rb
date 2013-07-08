@@ -29,10 +29,11 @@ class PhotosController < ApplicationController
   end
   
   def show
-    @photo = Photo.find(params[:id])
-    @groups = current_user.groups
+    @photo = Photo.find(params[:id], include: :owner)
+    
+    @groups = user_signed_in? ? current_user.groups : Group.allow_non_members
 
-    if (current_user == @photo.owner)
+    if (user_signed_in? && current_user == @photo.owner)
       @albums = current_user.albums
     end
     
@@ -44,6 +45,15 @@ class PhotosController < ApplicationController
   end
   
   def index
-    @photos = User.find(params[:user_id]).photos
+    if params[:user_id]
+      @user = User.includes(:photos).find(params[:user_id])
+      @photos = @user.photos
+    elsif params[:group_id]
+      @group = Group.includes(photos: [:owner]).find(params[:group_id])
+      @photos = @group.photos
+    elsif params[:album_id]
+      @album = album.includes(:photos).find(params[:album_id])
+      @photos = @album.photos
+    end
   end
 end
