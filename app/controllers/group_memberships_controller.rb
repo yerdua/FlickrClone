@@ -1,7 +1,9 @@
 class GroupMembershipsController < ApplicationController
   def create
     if user_signed_in?
-      membership = current_user.memberships.build(group_id: params[:group_id])
+      membership = current_user
+        .group_memberships
+        .build(group_id: params[:group_id])
       if membership.save
         render json: membership
       else

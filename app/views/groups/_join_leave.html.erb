@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+
+  <% link_class = group.has_member?(current_user) ?
+    'is_member' : 'nonmember' %>
+  <%= link_to 'Leave this Group',
+    group_group_membership_url(group),
+    method: :delete,
+    remote: true,
+    class: "leave_group #{link_class}",
+    name: "group_#{group.id}" %>
+  <%= link_to 'Join this Group',
+    group_group_membership_url(group),
+    method: :post,
+    remote: true,
+    class: "join_group #{link_class}",
+    name: "group_#{group.id}" %>
+<% end %>

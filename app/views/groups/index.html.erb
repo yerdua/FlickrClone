@@ -1,6 +1,19 @@
 <h1><%= @title %></h1>
 <ul>
   <% @groups.each do |group| %>
-    <li><%= link_to group.name, group_url(group) %></li>
+    <li>
+      <%= link_to group.name, group_url(group) %>
+      <button class="btn">
+        <%= render partial: 'groups/join_leave', locals: { group: group } %>
+      </button>
+    </li>
   <% end %>
 </ul>
+
+<script type="text/javascript">
+  $(".join_group, .leave_group").on("ajax:success", function(event) {
+    var $links = $("[name=" + event.currentTarget.name + "]");
+    $links.toggleClass('nonmember');
+    $links.toggleClass('is_member');
+  });
+</script>

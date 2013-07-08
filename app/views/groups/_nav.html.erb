@@ -1,5 +1,13 @@
 <ul class="nav nav-pills">
   <li><%= link_to 'Members', group_members_url(@group) %></li>
   <li><%= link_to 'Photostream', group_photos_url(@group) %></li>
-  <%= %>
+  <li><%= render partial: 'groups/join_leave', locals: { group: @group } %></li>
 </ul>
+
+<script type="text/javascript">
+  $(".join_group, .leave_group").on("ajax:success", function(event) {
+    var $links = $("[name=" + event.currentTarget.name + "]");
+    $links.toggleClass('nonmember');
+    $links.toggleClass('is_member');
+  });
+</script>
