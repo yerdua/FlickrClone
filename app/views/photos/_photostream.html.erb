@@ -3,6 +3,11 @@
     <div class="photo">
       <a href="<%= photo_url(photo) %>"><img 
         src="<%= photo.image.url(size) %>"></a>
+      <% show_owner ||= false%>
+      <% if show_owner %>
+        <br />
+        by <%= link_to photo.owner.name, user_url(photo.owner) %>
+      <% end %>
     </div>
   <% end %>
 </div>

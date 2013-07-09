@@ -1,7 +1,9 @@
 <ul class="nav nav-pills">
   <li><%= link_to 'Members', group_members_url(@group) %></li>
   <li><%= link_to 'Photostream', group_photos_url(@group) %></li>
-  <li><%= render partial: 'groups/join_leave', locals: { group: @group } %></li>
+  <li>
+    <%= render partial: 'groups/join_leave', locals: { group: @group } %>
+  </li>
 </ul>
 
 <script type="text/javascript">

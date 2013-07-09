@@ -51,6 +51,7 @@ class PhotosController < ApplicationController
     elsif params[:group_id]
       @group = Group.includes(photos: [:owner]).find(params[:group_id])
       @photos = @group.photos
+      @show_owner = true
       @title = @group.name
     elsif params[:album_id]
       @album = Album.includes(:photos).find(params[:album_id])

@@ -1,6 +1,12 @@
-<div id="add_remove_groups">
-  <h4>Add to / Remove from Groups</h4>
-  <ul>
+<div id="add_remove_groups" class="dropdown">
+  <a
+    class="dropdown-toggle"
+    data-toggle="dropdown"
+    href="#">Add to / Remove from Groups</a>
+  <ul
+    class="dropdown-menu"
+    role="menu"
+    aria-labelledby="dLabel">
     <% @groups.each do |group| %>
       <% link_class = @photo.group_ids.include?(group.id) ?
         'remove_from' : 'add_to' %>

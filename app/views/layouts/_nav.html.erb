@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-static-top">
   <div class="navbar-inner">
     <div class="container pull-left">
       <ul class='nav'>
@@ -15,6 +15,9 @@
               </li>
               <li>
                 <%= link_to 'Albums', user_albums_url(current_user) %>
+              </li>
+              <li>
+                <%= link_to 'Create Album', new_album_url %>
               </li>
               <li>
                 <%= link_to 'Groups', user_groups_url(current_user) %>

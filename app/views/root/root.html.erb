@@ -1,5 +1,11 @@
-<% if user_signed_in? %>
-<h1>welcome <%= current_user.name %>!</h1>
-<% else %>
-the page for not signed in people
-<% end %>
+<div class="span6 offset3">
+
+  <h1>Welcome<%= user_signed_in? ? ", #{current_user.name}" : "" %>!</h1>
+
+  <% if user_signed_in? %>
+  You're signed in! That means you can upload photos, add them to albums and groups, and view photos by your friends.
+  <% else %>
+  You're not signed in! You can upload photos anonymously if you wish, but they'll only be accessible if you share them with groups that allow posts by non-members. You can also <%= link_to 'sign in', new_user_session_url %> or <%= link_to 'sign up', new_user_registration_url %>.
+  <% end %>
+
+</div>

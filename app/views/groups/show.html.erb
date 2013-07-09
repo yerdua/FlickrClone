@@ -6,4 +6,4 @@
 <%= render partial: 'nav' %>
 
 <%= render partial: 'photos/photostream', :locals => 
-  { photos: @group.photos, size: :small } %>
+  { photos: @group.photos, size: :thumb, show_owner: true } %>

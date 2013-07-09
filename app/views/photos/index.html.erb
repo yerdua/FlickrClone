@@ -2,6 +2,8 @@
 
 <%= render partial: 'groups/nav' if @group %>
 
+<%= render partial: 'users/nav', locals: { user: @user } %>
+
 
 <%= render :partial => 'photostream', locals: 
-  { photos: @photos, size: :small } %>
+  { photos: @photos, size: :small, show_owner: @show_owner || false } %>

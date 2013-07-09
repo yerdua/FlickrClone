@@ -1,0 +1,23 @@
+<ul class="nav nav-pills">
+  <li><%= link_to "Photostream", user_photos_url(user) %></li>
+  <li><%= link_to "Albums", user_albums_url(user) %></li>
+  <li><%= link_to "Groups", user_groups_url(user) %></li>
+  <% is_hidden = !user_signed_in? || current_user == @user %>
+  <% friended = user_signed_in? && current_user.friends.include?(@user) %>
+  <li class="friendship
+    <%= 'hidden' if is_hidden %>
+    <%= friended ? 'friended' : 'not_friended'%>">
+      <%= link_to 'Add Friend', user_friendship_url(@user.id),
+        method: :post, remote: true, id: 'add_friend' %>
+
+      <%= link_to 'Unfriend', user_friendship_url(@user.id),
+        method: :delete, remote: true, id: 'remove_friend' %>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  $('.friendship a').on("ajax:success", function(){
+    $('.friendship').toggleClass('friended');
+    $('.friendship').toggleClass('not_friended');
+  });
+</script>

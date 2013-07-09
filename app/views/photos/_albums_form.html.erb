@@ -1,6 +1,8 @@
-<div id="add_remove_albums">
-  <h4>Add to or Remove from Albums</h4>
-  <ul>
+<div id="add_remove_albums" class="dropdown">
+  <a class="dropdown-toggle"
+    data-toggle="dropdown"
+    href="#">Add to or Remove from Albums</a>
+  <ul class="dropdown-menu" role="menu">
     <% @albums.each do |album| %>
       <% link_class = @photo.album_ids.include?(album.id) ?
         'remove_from' : 'add_to' %>

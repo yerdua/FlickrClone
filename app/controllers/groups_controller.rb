@@ -25,9 +25,9 @@ class GroupsController < ApplicationController
   
   def index
     if params[:user_id]
-      user = User.includes(:groups).find(params[:user_id])
-      @groups = user.groups
-      @title = "#{user.name}'s Groups"
+      @user = User.includes(:groups).find(params[:user_id])
+      @groups = @user.groups
+      @title = "#{@user.name}'s Groups"
     else
       @groups = Group.all
       @title = "All Groups"
