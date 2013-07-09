@@ -10,7 +10,23 @@
 <div id="sidebar" class="span4">
   <div class="info">
     <% if @photo.owner %>
-      <h3><%= link_to @photo.owner.name, user_url(@photo.owner) %></h3>
+      <h3>
+        <%= link_to @photo.owner.name, user_url(@photo.owner) %>
+      </h3>
+      <% is_hidden = !user_signed_in? || current_user == @photo.owner %>
+      <% friended = user_signed_in? &&
+        current_user.friends.include?(@photo.owner) %>
+      <div class="friendship  
+        <%= 'hidden' if is_hidden %>
+        <%= friended ? 'friended' : 'not_friended'%>">
+          <%= link_to 'Add Friend', user_friendship_url(@photo.owner.id),
+            method: :post, remote: true, id: 'add_friend', class: 'btn' %>
+
+          <%= link_to 'Unfriend', user_friendship_url(@photo.owner.id),
+            method: :delete, remote: true,
+            id: 'remove_friend', class: 'btn' %>
+        </div>
+      </h3>
     <% else %>
       <h3>anonymous photographer</h3>
     <% end%>
@@ -22,3 +38,10 @@
     <%= render :partial => 'albums_form' %>
   <% end %>  
 </div>
+
+<script type="text/javascript">
+  $('.friendship a').on("ajax:success", function(){
+    $('.friendship').toggleClass('friended');
+    $('.friendship').toggleClass('not_friended');
+  });
+</script>
