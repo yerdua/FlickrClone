@@ -6,7 +6,12 @@
       <% show_owner ||= false%>
       <% if show_owner %>
         <br />
-        by <%= link_to photo.owner.name, user_url(photo.owner) %>
+        by 
+        <% if photo.owner %>
+          <%= link_to photo.owner.name, user_url(photo.owner) %>
+        <% else%>
+          Anonymous
+        <% end %>
       <% end %>
     </div>
   <% end %>
