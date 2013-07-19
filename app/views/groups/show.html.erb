@@ -3,7 +3,7 @@
   <p><%= @group.description.html_safe unless @group.description.nil? %></p>
 </div>
 
-<%= render partial: 'nav' %>
+<%= render partial: 'groups/nav' %>
 
 <%= render partial: 'photos/photostream', :locals => 
   { photos: @group.photos, size: :thumb, show_owner: true } %>

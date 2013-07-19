@@ -2,7 +2,7 @@
 
 <%= render partial: 'groups/nav' if @group %>
 
-<%= render partial: 'users/nav', locals: { user: @user } %>
+<%= render partial: 'users/nav', locals: { user: @user } if @user %>
 
 
 <%= render :partial => 'photostream', locals: 
