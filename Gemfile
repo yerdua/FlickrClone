@@ -36,12 +36,10 @@ gem 'jquery-rails'
 gem 'js-routes'
 gem 'less-rails'
 gem 'nilify_blanks'
-gem 'paperclip', "~> 3.3.0"
+gem 'paperclip', "~> 3.4.2"
 gem 'pg'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
-
-# gem 'cocaine', "0.3.2"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
