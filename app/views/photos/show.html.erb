@@ -27,6 +27,11 @@
             id: 'remove_friend', class: 'btn' %>
         </div>
       </h3>
+      <% if @photo.owner == current_user %>
+        <%= button_to 'delete',
+            photo_url(@photo),
+            method: :delete, class: 'btn' %>
+      <% end %>
     <% else %>
       <h3>anonymous photographer</h3>
     <% end%>

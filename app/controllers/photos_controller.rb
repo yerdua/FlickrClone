@@ -19,6 +19,15 @@ class PhotosController < ApplicationController
     end
   end
   
+  def destroy
+    @photo = Photo.find(params[:id])
+    
+    if @photo.owner == current_user
+      @photo.destroy
+      redirect_to user_photos_url(current_user)
+    end
+  end
+  
   def update
     @photo = Photo.find(params[:id])
     @photo.update_attributes(params[:photo])
