@@ -3,7 +3,7 @@ FlickrClone
 
 This is the result of spending about a week making a copy of [Flickr.com](http://www.flickr.com). Not all of the functionality is here, obviously.
 
-So, what does this do?
+So, what does this do? You can read more about this, or you can go play with it on heroku: [http://flickrclone.herokuapp.com/](http://flickrclone.herokuapp.com/)
 
 ### User sign up
 
@@ -27,6 +27,6 @@ When viewing other user's pages, the current user can add them as a friend. The 
 
 ---
 
-### Future things (maybe)
+### Future things
 
 If I continue working on this, I'll work on the problem of anonymizing photos. Step 1 is to make sure EXIF data is removed. Step 2 is harder - process the images such that the camera can't be identified by its sensor noise fingerprint (google 'sensor noise fingerprint' if you'd like to be upset). I haven't found good information on how to do this. It's an interesting problem, but was beyond the scope of a week long project.
