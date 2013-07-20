@@ -37,7 +37,7 @@ gem 'less-rails'
 gem 'nilify_blanks'
 gem 'paperclip', "~> 3.4.2"
 gem 'pg'
-gem 'underscore'
+gem 'underscore-rails'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 
